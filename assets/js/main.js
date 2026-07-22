@@ -54,6 +54,21 @@ if (document.readyState === 'interactive' || document.readyState === 'complete')
       io.observe(el);
     });
 
+    // 3D Interactive Card Tilt Engine (Flutter-style Motion)
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rx = (y / (rect.height / 2)) * -6;
+        const ry = (x / (rect.width / 2)) * 6;
+        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.015, 1.015, 1.015)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      });
+    });
+
     // Counter animation
     function animCount(el, target, suffix = '') {
       let start = 0;

@@ -568,6 +568,29 @@
       }
     }
 
+    /* 3D TILT & FLUTTER-LIKE MOTION SYSTEM */
+    .reveal {
+      opacity: 0;
+      transform: translate3d(0, 36px, 0) scale(0.97);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    .tilt-card {
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .tilt-card:hover {
+      box-shadow: 0 25px 50px rgba(184, 146, 42, 0.15), 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+    }
+
     /* SECTION COMMON */
     section {
       padding: 80px 60px;
